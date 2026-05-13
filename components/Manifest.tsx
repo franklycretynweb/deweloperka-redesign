@@ -195,13 +195,13 @@ export default function Manifest() {
         {/* ── Text & Map ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* Left text */}
+          {/* Left text — na mobile pierwszy, na desktop order-last */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1 }}
-            className="lg:col-span-5 flex flex-col justify-center"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="lg:col-span-5 lg:order-last flex flex-col justify-center"
           >
             <h3 className="font-display font-medium text-[clamp(28px,3vw,44px)] leading-[1.2] text-ink mb-10">
               <span className="whitespace-nowrap">&ldquo;Szczecin ma wiele dzielnic.</span><br />
@@ -212,13 +212,13 @@ export default function Manifest() {
             </p>
           </motion.div>
 
-          {/* Right map card */}
+          {/* Right map card — na desktop order-first (po lewej) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="lg:col-span-7 flex flex-col bg-[#F5F0E8] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-ink/5"
+            transition={{ duration: 1 }}
+            className="lg:col-span-7 lg:order-first flex flex-col bg-[#F5F0E8] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-ink/5"
           >
             {/* ── Tabs ── */}
             <div className="flex overflow-x-auto hide-scrollbar border-b border-ink/8 bg-[#F5F0E8]">
