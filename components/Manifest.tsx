@@ -100,11 +100,11 @@ export default function Manifest() {
   const CatIcon = categoryIcon[activeCategory];
 
   return (
-    <section className="relative bg-cream pt-24 pb-24 md:pt-40 md:pb-40 overflow-hidden z-20 border-t border-ink/5">
+    <section className="relative bg-cream pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden z-20 border-t border-ink/5">
       <div className="max-w-[1800px] mx-auto px-8 md:px-12">
 
         {/* ── Top Manifest Part ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center mb-24 md:mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center mb-16 md:mb-20">
 
           {/* Left */}
           <motion.div
@@ -186,7 +186,7 @@ export default function Manifest() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="w-full h-[1px] bg-ink/10 origin-left mb-16 md:mb-24"
+          className="w-full h-[1px] bg-ink/10 origin-left mb-12 md:mb-16"
         />
 
         {/* ── Text & Map ── */}

@@ -45,7 +45,7 @@ export default function Kontakt() {
         className="h-[1px] w-full bg-ink/15 origin-left"
       />
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-24 md:pt-32 pb-24 md:pb-40">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-28 pb-20 md:pb-28">
 
         {/* Header */}
         <div className="mb-16 md:mb-24">
