@@ -45,7 +45,7 @@ export default function Hero() {
             <li key={link}>
               <a
                 href={`#${link.toLowerCase().replace(" ", "-")}`}
-                className="font-body font-medium text-[15px] text-ink/70 hover:text-ink transition-colors duration-300"
+                className="font-body font-medium text-[15px] text-ink/90 hover:text-ink transition-colors duration-300"
               >
                 {link}
               </a>
@@ -56,7 +56,7 @@ export default function Hero() {
         {/* Right Button */}
         <a
           href="#kontakt"
-          className="hidden md:flex items-center gap-2.5 font-body font-medium text-[14px] text-ink border border-ink/20 px-5 py-2.5 hover:border-ink transition-colors duration-300"
+          className="hidden md:flex items-center gap-2.5 font-body font-semibold text-[14px] text-ink border border-ink/40 px-5 py-2.5 hover:bg-ink hover:text-cream transition-all duration-300"
         >
           <svg
             width="16"
@@ -64,7 +64,7 @@ export default function Hero() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
@@ -85,8 +85,8 @@ export default function Hero() {
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-10 h-[1px] bg-gold" />
-              <span className="font-body font-semibold text-[11px] md:text-[12px] tracking-[0.2em] uppercase text-gold">
+              <div className="w-10 h-[1px] bg-[#9B7B3B]" />
+              <span className="font-body font-bold text-[11px] md:text-[12px] tracking-[0.2em] uppercase text-[#9B7B3B]">
                 Etap II — W sprzedaży
               </span>
             </div>
@@ -98,7 +98,7 @@ export default function Hero() {
             </h1>
 
             {/* Sub-headline */}
-            <p className="font-body font-light text-[16px] md:text-[18px] leading-[1.6] text-ink/70 max-w-[480px] mb-10 md:mb-12">
+            <p className="font-body font-light text-[16px] md:text-[18px] leading-[1.6] text-ink/80 max-w-[480px] mb-10 md:mb-12">
               Zaprojektowane z myślą o tych, którzy nie uznają kompromisów. Odkryj przestrzeń, w której natura spotyka się z wielkomiejskim stylem życia.
             </p>
 
@@ -108,7 +108,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 href="#kontakt"
-                className="w-full sm:w-auto bg-ink text-cream font-body font-medium text-[15px] tracking-wide px-10 py-4 lg:py-5 border border-ink hover:bg-cream hover:text-ink transition-all duration-500 text-center"
+                className="w-full sm:w-auto bg-ink text-cream font-body font-semibold text-[15px] tracking-wide px-10 py-4 lg:py-5 border border-ink hover:bg-cream hover:text-ink transition-all duration-500 text-center"
               >
                 Zapytaj o mieszkanie
               </motion.a>
@@ -116,10 +116,10 @@ export default function Hero() {
               {/* Urgency / Status Indicator */}
               <div className="flex items-center gap-3 mt-2 sm:mt-0">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9B7B3B] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#9B7B3B]"></span>
                 </span>
-                <span className="font-body font-medium text-[13px] text-ink-muted">
+                <span className="font-body font-semibold text-[13px] text-ink/80">
                   200 mieszkań oddanych
                 </span>
               </div>

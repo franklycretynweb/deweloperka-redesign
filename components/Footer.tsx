@@ -12,7 +12,7 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-ink text-cream">
+    <footer className="relative bg-[#1A1814] text-cream">
 
       {/* Top gold line */}
       <motion.div

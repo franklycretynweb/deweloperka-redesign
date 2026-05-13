@@ -136,43 +136,31 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
-function roomsLabel(count: number): string {
-  if (count === 1) return "1 pokój";
-  if (count < 5) return `${count} pokoje`;
-  return `${count} pokoi`;
-}
-
-function UnitCard({ unit, index }: { unit: ShowcaseUnit; index: number }) {
+function UnitCard({ unit }: { unit: ShowcaseUnit }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.8, ease, delay: index * 0.08 }}
-      className="group relative flex flex-col overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.07)]"
-    >
+    <div className="group relative flex flex-col shrink-0 w-[85vw] md:w-[45vw] lg:w-[380px] snap-start">
       {/* Image */}
-      <div className="relative aspect-[4/5] w-full bg-cream overflow-hidden">
+      <div className="relative aspect-[4/5] w-full bg-cream-dark overflow-hidden">
         <Image
           src={unit.thumbnailUrl}
           alt={`Mieszkanie ${unit.displayName} — ${unit.label}`}
           fill
           className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          sizes="(max-width: 768px) 85vw, (max-width: 1200px) 45vw, 380px"
         />
 
         {/* Label badge */}
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-block font-body font-medium text-[11px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full bg-cream/90 text-ink">
+          <span className="inline-block font-body font-medium text-[11px] tracking-[0.12em] uppercase px-3 py-1.5 bg-cream/90 text-ink">
             {unit.label}
           </span>
         </div>
 
-        {/* Hover Actions Overlay */}
-        <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center gap-3 backdrop-blur-[2px] z-20">
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-ink/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center gap-3 z-20">
           <a
             href="#kontakt"
-            className="bg-white text-ink px-6 py-2.5 rounded-full font-body text-[13px] font-medium tracking-wide hover:scale-105 transition-transform"
+            className="bg-white text-ink px-6 py-2.5 font-body text-[13px] font-medium tracking-wide hover:scale-105 transition-transform"
           >
             Zapytaj o cenę
           </a>
@@ -181,7 +169,7 @@ function UnitCard({ unit, index }: { unit: ShowcaseUnit; index: number }) {
               href={unit.planUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-transparent border border-white/60 text-white px-6 py-2.5 rounded-full font-body text-[13px] font-medium tracking-wide hover:bg-white/20 transition-colors"
+              className="border border-white/60 text-white px-6 py-2.5 font-body text-[13px] font-medium tracking-wide hover:bg-white/20 transition-colors"
             >
               Pobierz rzut PDF
             </a>
@@ -190,51 +178,32 @@ function UnitCard({ unit, index }: { unit: ShowcaseUnit; index: number }) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col p-5 md:p-6 bg-white">
-        {/* Name + price */}
-        <div className="flex justify-between items-baseline gap-4 mb-4">
-          <h3 className="font-body text-[15px] md:text-[16px] text-ink font-medium tracking-tight">
+      <div className="flex flex-col pt-5 pb-2">
+        {/* Label + name */}
+        <div className="flex items-baseline justify-between gap-4 mb-2">
+          <h3 className="font-display font-semibold text-[20px] md:text-[22px] text-ink tracking-tight">
             {unit.displayName}
           </h3>
-          <span className="font-body text-[15px] md:text-[16px] text-ink font-medium tracking-tight whitespace-nowrap">
-            {formatPrice(unit.cost)}
+          <span className="font-body text-[14px] text-ink/80 font-medium">
+            {unit.label}
           </span>
         </div>
 
-        {/* Stats row — compact with icons */}
-        <div className="flex items-center justify-between text-ink-muted">
-          <div className="flex items-center gap-1.5">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 opacity-60">
-              <path d="M2 20V8l10-6 10 6v12" />
-              <path d="M9 20V14h6v6" />
-            </svg>
-            <span className="font-body text-[12px]">{unit.roomCount} pok.</span>
-          </div>
-
-          <span className="text-ink/15">·</span>
-
-          <div className="flex items-center gap-1.5">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 opacity-60">
-              <path d="M21 21H3V3" />
-              <path d="M21 3v18" />
-              <path d="M3 3h18" />
-              <path d="M7 7h6v6H7z" />
-            </svg>
-            <span className="font-body text-[12px]">{unit.area} m²</span>
-          </div>
-
-          <span className="text-ink/15">·</span>
-
-          <div className="flex items-center gap-1.5">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 opacity-60">
-              <path d="M22 5v17H5" />
-              <path d="M5 22V17H10V12H15V7H22" />
-            </svg>
-            <span className="font-body text-[12px]">p. {unit.floor}</span>
-          </div>
+        {/* Stats */}
+        <div className="flex items-center gap-4 text-ink/80 font-body text-[14px] font-medium mb-3">
+          <span>{unit.roomCount} pok.</span>
+          <span className="text-ink/40">·</span>
+          <span>{unit.area} m²</span>
+          <span className="text-ink/40">·</span>
+          <span>piętro {unit.floor}</span>
         </div>
+
+        {/* Price */}
+        <span className="font-body font-medium text-[17px] md:text-[18px] text-ink tracking-tight">
+          {formatPrice(unit.cost)}
+        </span>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -242,64 +211,79 @@ export default function Mieszkania() {
   return (
     <section
       id="mieszkania"
-      className="relative bg-cream pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden"
+      className="relative bg-cream pt-20 pb-20 md:pt-28 md:pb-28"
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease }}
-          >
+      {/* Header */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 mb-12 md:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
+          <div>
             <span className="block font-body font-medium text-[12px] tracking-[0.2em] uppercase text-ink-muted mb-5">
               Mieszkania
             </span>
             <h2 className="font-display font-semibold text-[clamp(32px,4.5vw,56px)] leading-[1.05] tracking-tight text-ink">
               Od 45 do 83 m².
             </h2>
-            <p className="font-display font-semibold text-[clamp(32px,4.5vw,56px)] leading-[1.05] tracking-tight text-ink/30 mt-1">
+            <p className="font-display font-semibold text-[clamp(32px,4.5vw,56px)] leading-[1.05] tracking-tight text-ink/60 mt-1">
               Osiem układów do wyboru.
             </p>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Grid — 8 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {showcaseUnits.map((unit, i) => (
-            <UnitCard key={unit.id} unit={unit} index={i} />
-          ))}
-        </div>
-
-        {/* CTA — all apartments */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease, delay: 0.2 }}
-          className="mt-16 md:mt-24 text-center"
-        >
-          <a
-            href={SENSEVR_BASE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 font-body font-medium text-[13px] tracking-[0.12em] uppercase text-ink border border-ink/15 px-10 py-5 transition-all duration-300 hover:bg-ink hover:text-cream"
-          >
-            Wszystkie 200 mieszkań — makieta 3D
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
-              <path d="M7 17l9.2-9.2M17 17V7H7" />
+          {/* Scroll hint */}
+          <div className="hidden md:flex items-center gap-2 text-ink-muted font-body text-[13px]">
+            <span>Przeciągnij</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </div>
         </motion.div>
       </div>
+
+      {/* Carousel */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease, delay: 0.1 }}
+        className="flex gap-5 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pl-6 md:pl-12 lg:pl-[max(3rem,calc((100vw-1400px)/2+4rem))] pr-6 md:pr-12 pb-4 no-scrollbar"
+      >
+        {showcaseUnits.map((unit) => (
+          <UnitCard key={unit.id} unit={unit} />
+        ))}
+      </motion.div>
+
+      {/* CTA — all apartments */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease, delay: 0.2 }}
+        className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 mt-14 md:mt-20 text-center"
+      >
+        <a
+          href={SENSEVR_BASE}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 font-body font-semibold text-[13px] tracking-[0.12em] uppercase text-ink border border-ink/30 px-10 py-5 transition-all duration-300 hover:bg-ink hover:text-cream"
+        >
+          Wszystkie 200 mieszkań — makieta 3D
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M7 17l9.2-9.2M17 17V7H7" />
+          </svg>
+        </a>
+      </motion.div>
     </section>
   );
 }

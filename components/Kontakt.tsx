@@ -106,7 +106,7 @@ export default function Kontakt() {
 
                 {/* Name */}
                 <div className="flex flex-col gap-2">
-                  <label className="font-body font-medium text-[12px] uppercase tracking-[0.15em] text-ink-muted">
+                  <label className="font-body font-semibold text-[12px] uppercase tracking-[0.15em] text-ink/80">
                     Imię
                   </label>
                   <input
@@ -116,8 +116,8 @@ export default function Kontakt() {
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                     className="
-                      w-full bg-transparent border-b border-ink/20 py-4
-                      font-body font-light text-[16px] text-ink placeholder:text-ink/30
+                      w-full bg-transparent border-b border-ink/30 py-4
+                      font-body font-light text-[16px] text-ink placeholder:text-ink/60
                       focus:outline-none focus:border-ink transition-colors duration-200
                     "
                   />
@@ -125,7 +125,7 @@ export default function Kontakt() {
 
                 {/* Phone */}
                 <div className="flex flex-col gap-2">
-                  <label className="font-body font-medium text-[12px] uppercase tracking-[0.15em] text-ink-muted">
+                  <label className="font-body font-semibold text-[12px] uppercase tracking-[0.15em] text-ink/80">
                     Telefon
                   </label>
                   <input
@@ -135,8 +135,8 @@ export default function Kontakt() {
                     value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                     className="
-                      w-full bg-transparent border-b border-ink/20 py-4
-                      font-body font-light text-[16px] text-ink placeholder:text-ink/30
+                      w-full bg-transparent border-b border-ink/30 py-4
+                      font-body font-light text-[16px] text-ink placeholder:text-ink/60
                       focus:outline-none focus:border-ink transition-colors duration-200
                     "
                   />
@@ -144,7 +144,7 @@ export default function Kontakt() {
 
                 {/* Interest */}
                 <div className="flex flex-col gap-2">
-                  <label className="font-body font-medium text-[12px] uppercase tracking-[0.15em] text-ink-muted">
+                  <label className="font-body font-semibold text-[12px] uppercase tracking-[0.15em] text-ink/80">
                     Interesuję się
                   </label>
                   <div className="flex flex-wrap gap-2 pt-2">
@@ -157,7 +157,7 @@ export default function Kontakt() {
                           font-body text-[13px] px-4 py-2 border transition-all duration-200
                           ${form.interest === item
                             ? "bg-ink text-cream border-ink"
-                            : "bg-transparent text-ink/60 border-ink/20 hover:border-ink/50 hover:text-ink"
+                            : "bg-transparent text-ink/80 border-ink/40 hover:border-ink/60 hover:text-ink"
                           }
                         `}
                       >
@@ -184,9 +184,9 @@ export default function Kontakt() {
                     {state === "sending" ? "Wysyłam..." : "Chcę poznać szczegóły →"}
                   </motion.button>
 
-                  <p className="font-body font-light text-[12px] text-ink/40 max-w-[260px] leading-relaxed">
+                  <p className="font-body font-light text-[12px] text-ink/60 max-w-[260px] leading-relaxed">
                     Lub zadzwoń:{" "}
-                    <a href="tel:+48539969696" className="text-ink/60 hover:text-ink transition-colors">
+                    <a href="tel:+48539969696" className="text-ink font-medium hover:text-ink/80 transition-colors">
                       539 96 96 96
                     </a>
                     . Odpiszemy w ciągu 24h.
@@ -194,7 +194,7 @@ export default function Kontakt() {
                 </div>
 
                 {/* RODO */}
-                <p className="font-body font-light text-[11px] text-ink/30 leading-relaxed max-w-[520px]">
+                <p className="font-body font-light text-[12px] md:text-[13px] text-ink/60 leading-relaxed max-w-[520px]">
                   Administratorem danych jest Master House Sp. z o.o. Sp. K., ul. Lutniana 38/70, 71-425 Szczecin.
                   Dane przetwarzane są w celu odpowiedzi na zapytanie. Przysługuje Ci prawo dostępu, sprostowania
                   i usunięcia danych.

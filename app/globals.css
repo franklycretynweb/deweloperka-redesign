@@ -31,6 +31,15 @@ body {
   font-family: var(--font-body);
 }
 
+/* Hide scrollbar for carousel */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @utility mask-keyhole {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' preserveAspectRatio='none'%3E%3Cpath d='M 50 0 C 80 0 85 20 85 35 C 85 45 75 52 70 58 L 85 150 L 15 150 L 30 58 C 25 52 15 45 15 35 C 15 20 20 0 50 0 Z' fill='black'/%3E%3C/svg%3E");
   mask-size: 100% 100%;

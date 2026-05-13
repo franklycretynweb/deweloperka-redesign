@@ -49,7 +49,7 @@ export default function StatsBar() {
             </span>
 
             {/* Label */}
-            <span className="font-body font-medium text-[11px] md:text-[12px] uppercase tracking-[0.18em] text-ink-muted">
+            <span className="font-body font-semibold text-[12px] md:text-[13px] uppercase tracking-[0.18em] text-ink/80 mt-1">
               {stat.label}
             </span>
           </motion.div>
