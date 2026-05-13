@@ -103,7 +103,7 @@ export default function Hero() {
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold"></span>
                 </span>
                 <span className="font-body font-medium text-[13px] text-ink-muted">
-                  Ostatnie 3 apartamenty
+                  200 mieszkań oddanych
                 </span>
               </div>
             </div>
