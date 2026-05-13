@@ -41,7 +41,7 @@ export default function Footer() {
                 alt="Crocus Hill"
                 width={240}
                 height={90}
-                className="h-16 w-auto object-contain brightness-0 invert"
+                className="h-24 w-auto object-contain brightness-0 invert"
               />
             </div>
             <p className="font-body font-light text-[15px] text-cream/50 leading-[1.7] max-w-[300px]">
