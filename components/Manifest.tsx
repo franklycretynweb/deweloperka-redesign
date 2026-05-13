@@ -32,37 +32,30 @@ const sliderImages = [
 
 type Category = "Zieleń" | "Edukacja" | "Transport" | "Zakupy" | "Sport";
 
-// Konfiguracja wizualna każdej kategorii
-const categoryConfig: Record<Category, {
-  icon: LucideIcon;
-  bg: string;
-  iconColor: string;
-  activeBg: string;
-  activeText: string;
-  markerColor: string;
-}> = {
-  "Zieleń":    { icon: Trees,       bg: "bg-emerald-50",  iconColor: "text-emerald-600",  activeBg: "bg-emerald-500",  activeText: "text-white", markerColor: "#059669" },
-  "Edukacja":  { icon: GraduationCap, bg: "bg-blue-50",   iconColor: "text-blue-600",     activeBg: "bg-blue-500",     activeText: "text-white", markerColor: "#2563EB" },
-  "Transport": { icon: TramFront,   bg: "bg-amber-50",    iconColor: "text-amber-600",    activeBg: "bg-amber-500",    activeText: "text-white", markerColor: "#D97706" },
-  "Zakupy":    { icon: ShoppingBag, bg: "bg-violet-50",   iconColor: "text-violet-600",   activeBg: "bg-violet-500",   activeText: "text-white", markerColor: "#7C3AED" },
-  "Sport":     { icon: Dumbbell,    bg: "bg-rose-50",     iconColor: "text-rose-600",     activeBg: "bg-rose-500",     activeText: "text-white", markerColor: "#E11D48" },
+// Tylko ikona per kategoria — zero dodatkowych kolorów
+const categoryIcon: Record<Category, LucideIcon> = {
+  "Zieleń":    Trees,
+  "Edukacja":  GraduationCap,
+  "Transport": TramFront,
+  "Zakupy":    ShoppingBag,
+  "Sport":     Dumbbell,
 };
 
-// Ikona dla każdego konkretnego miejsca
+// Ikona dopasowana do konkretnego miejsca
 const locationIconMap: Record<string, LucideIcon> = {
-  "Jasne Błonia":                   Trees,
-  "Park Kasprowicza":               TreePine,
-  "Bulwary Odrzańskie":             Waves,
-  "Przedszkole Publiczne nr 2":     Baby,
-  "Szkoła Podstawowa nr 54":        BookOpen,
-  "Szkoła Podstawowa nr 10":        Award,        // top szkoła w Polsce → Award
-  "Uniwersytet Szczeciński":        GraduationCap,
+  "Jasne Błonia":                       Trees,
+  "Park Kasprowicza":                   TreePine,
+  "Bulwary Odrzańskie":                 Waves,
+  "Przedszkole Publiczne nr 2":         Baby,
+  "Szkoła Podstawowa nr 54":            BookOpen,
+  "Szkoła Podstawowa nr 10":            Award,
+  "Uniwersytet Szczeciński":            GraduationCap,
   "Przystanek Tramwajowy (Linie 1, 9)": TramFront,
-  "Dworzec Główny PKP":             TrainFront,
-  "Centrum Handlowe Galaxy":        ShoppingBag,
-  "Lokalny ryneczek":               ShoppingBasket,
-  "Korty tenisowe":                 Dumbbell,
-  "Basen Floating Arena":           Waves,
+  "Dworzec Główny PKP":                 TrainFront,
+  "Centrum Handlowe Galaxy":            ShoppingBag,
+  "Lokalny ryneczek":                   ShoppingBasket,
+  "Korty tenisowe":                     Dumbbell,
+  "Basen Floating Arena":               Waves,
 };
 
 const categories: Category[] = ["Zieleń", "Edukacja", "Transport", "Zakupy", "Sport"];
@@ -75,9 +68,9 @@ const locationsData: Record<Category, {
   lng: number;
 }[]> = {
   "Zieleń": [
-    { name: "Jasne Błonia",       time: "2 min",  type: "pieszo",    lat: 53.4398, lng: 14.5369 },
-    { name: "Park Kasprowicza",   time: "8 min",  type: "pieszo",    lat: 53.4442, lng: 14.5348 },
-    { name: "Bulwary Odrzańskie", time: "12 min", type: "rowerem",   lat: 53.4245, lng: 14.5620 },
+    { name: "Jasne Błonia",       time: "2 min",  type: "pieszo",   lat: 53.4398, lng: 14.5369 },
+    { name: "Park Kasprowicza",   time: "8 min",  type: "pieszo",   lat: 53.4442, lng: 14.5348 },
+    { name: "Bulwary Odrzańskie", time: "12 min", type: "rowerem",  lat: 53.4245, lng: 14.5620 },
   ],
   "Edukacja": [
     { name: "Przedszkole Publiczne nr 2", time: "5 min",  type: "pieszo", lat: 53.4385, lng: 14.5390 },
@@ -85,15 +78,15 @@ const locationsData: Record<Category, {
     { name: "Uniwersytet Szczeciński",   time: "15 min", type: "pieszo", lat: 53.4330, lng: 14.5450 },
   ],
   "Transport": [
-    { name: "Przystanek Tramwajowy (Linie 1, 9)", time: "4 min",  type: "pieszo",      lat: 53.4370, lng: 14.5400 },
-    { name: "Dworzec Główny PKP",                 time: "10 min", type: "samochodem",  lat: 53.4180, lng: 14.5500 },
+    { name: "Przystanek Tramwajowy (Linie 1, 9)", time: "4 min",  type: "pieszo",     lat: 53.4370, lng: 14.5400 },
+    { name: "Dworzec Główny PKP",                 time: "10 min", type: "samochodem", lat: 53.4180, lng: 14.5500 },
   ],
   "Zakupy": [
     { name: "Centrum Handlowe Galaxy", time: "15 min", type: "pieszo", lat: 53.4320, lng: 14.5550 },
     { name: "Lokalny ryneczek",        time: "5 min",  type: "pieszo", lat: 53.4410, lng: 14.5300 },
   ],
   "Sport": [
-    { name: "Korty tenisowe",     time: "7 min", type: "pieszo",     lat: 53.4460, lng: 14.5310 },
+    { name: "Korty tenisowe",       time: "7 min", type: "pieszo",     lat: 53.4460, lng: 14.5310 },
     { name: "Basen Floating Arena", time: "8 min", type: "samochodem", lat: 53.4340, lng: 14.5580 },
   ],
 };
@@ -104,8 +97,7 @@ export default function Manifest() {
   const [activeCategory, setActiveCategory] = useState<Category>("Zieleń");
   const [isKeyholeDone, setIsKeyholeDone] = useState(false);
 
-  const config = categoryConfig[activeCategory];
-  const CatIcon = config.icon;
+  const CatIcon = categoryIcon[activeCategory];
 
   return (
     <section className="relative bg-cream pt-24 pb-24 md:pt-40 md:pb-40 overflow-hidden z-20 border-t border-ink/5">
@@ -114,7 +106,7 @@ export default function Manifest() {
         {/* ── Top Manifest Part ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center mb-24 md:mb-40">
 
-          {/* Left Content */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +131,7 @@ export default function Manifest() {
             </div>
           </motion.div>
 
-          {/* Right Image (Keyhole Mask) */}
+          {/* Right — Keyhole image */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,10 +192,10 @@ export default function Manifest() {
           className="w-full h-[1px] bg-ink/10 origin-left mb-16 md:mb-24"
         />
 
-        {/* ── Text & Map Section ── */}
+        {/* ── Text & Map ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* Left Text */}
+          {/* Left text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -220,7 +212,7 @@ export default function Manifest() {
             </p>
           </motion.div>
 
-          {/* Right Map Card */}
+          {/* Right map card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -228,30 +220,30 @@ export default function Manifest() {
             transition={{ duration: 1, delay: 0.2 }}
             className="lg:col-span-7 flex flex-col bg-[#F5F0E8] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-ink/5"
           >
-            {/* ── Category Tabs ── */}
-            <div className="flex overflow-x-auto hide-scrollbar border-b border-ink/5 bg-[#F5F0E8]">
+            {/* ── Tabs ── */}
+            <div className="flex overflow-x-auto hide-scrollbar border-b border-ink/8 bg-[#F5F0E8]">
               {categories.map((cat) => {
-                const cfg = categoryConfig[cat];
-                const Icon = cfg.icon;
+                const Icon = categoryIcon[cat];
                 const isActive = activeCategory === cat;
                 return (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`
-                      flex-shrink-0 flex items-center gap-2 px-5 lg:px-6 py-4 font-body font-medium text-[14px]
-                      transition-all duration-200 relative
-                      ${isActive ? "text-ink" : "text-ink/45 hover:text-ink/70"}
+                      flex-shrink-0 flex items-center gap-2.5 px-5 lg:px-6 py-4
+                      font-body font-medium text-[14px] transition-all duration-200 relative
+                      ${isActive ? "text-ink" : "text-ink/40 hover:text-ink/65"}
                     `}
                   >
+                    {/* Tab icon */}
                     <span className={`
-                      flex items-center justify-center w-6 h-6 rounded-md transition-all duration-200
-                      ${isActive ? `${cfg.activeBg}` : cfg.bg}
+                      flex items-center justify-center w-[26px] h-[26px] rounded-lg transition-all duration-200
+                      ${isActive ? "bg-ink" : "bg-ink/8"}
                     `}>
                       <Icon
                         size={13}
                         strokeWidth={2}
-                        className={isActive ? cfg.activeText : cfg.iconColor}
+                        className={isActive ? "text-cream" : "text-ink/50"}
                       />
                     </span>
                     <span>{cat}</span>
@@ -281,44 +273,41 @@ export default function Manifest() {
                     className="flex flex-col divide-y divide-ink/5"
                   >
                     {locationsData[activeCategory].map((loc, idx) => {
-                      const LocIcon = locationIconMap[loc.name] ?? config.icon;
+                      const LocIcon = locationIconMap[loc.name] ?? CatIcon;
                       return (
                         <motion.div
                           key={loc.name}
-                          initial={{ opacity: 0, x: -12 }}
+                          initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: idx * 0.07 }}
-                          className="flex items-center gap-5 px-6 py-5 group hover:bg-ink/[0.02] transition-colors cursor-default"
+                          transition={{ duration: 0.28, delay: idx * 0.06 }}
+                          className="flex items-center gap-4 px-6 py-5 group hover:bg-ink/[0.025] transition-colors cursor-default"
                         >
-                          {/* Icon box */}
-                          <div className={`
+                          {/* Icon — ink monochrome */}
+                          <div className="
                             flex-shrink-0 flex items-center justify-center
-                            w-12 h-12 rounded-xl ${config.bg} transition-all duration-200
-                            group-hover:scale-105
-                          `}>
+                            w-11 h-11 rounded-xl bg-ink/6
+                            group-hover:bg-ink/10 transition-colors duration-200
+                          ">
                             <LocIcon
-                              size={22}
+                              size={20}
                               strokeWidth={1.75}
-                              className={config.iconColor}
+                              className="text-ink/55 group-hover:text-ink/80 transition-colors duration-200"
                             />
                           </div>
 
-                          {/* Text */}
+                          {/* Name + mode */}
                           <div className="flex flex-col min-w-0">
                             <span className="font-body font-medium text-[15px] text-ink leading-snug truncate">
                               {loc.name}
                             </span>
-                            <span className="font-body font-light text-[13px] text-ink/45 mt-0.5">
-                              {loc.time}&nbsp;{loc.type}
+                            <span className="font-body font-light text-[13px] text-ink/40 mt-0.5">
+                              {loc.type}
                             </span>
                           </div>
 
-                          {/* Time pill */}
+                          {/* Time — right-aligned, minimal */}
                           <div className="ml-auto flex-shrink-0">
-                            <span className={`
-                              font-body font-semibold text-[12px] px-2.5 py-1 rounded-full
-                              ${config.bg} ${config.iconColor}
-                            `}>
+                            <span className="font-display font-medium text-[14px] text-ink/60 tabular-nums">
                               {loc.time}
                             </span>
                           </div>
@@ -330,11 +319,9 @@ export default function Manifest() {
               </div>
 
               {/* ── Mapbox ── */}
-              <div className="w-full md:w-[58%] relative h-full bg-ink/5 border-l border-ink/5">
+              <div className="w-full md:w-[58%] relative h-full border-l border-ink/5">
                 <MapboxMap
                   locations={locationsData[activeCategory]}
-                  activeCategory={activeCategory}
-                  markerColor={config.markerColor}
                   mapboxToken={mapboxToken}
                 />
               </div>

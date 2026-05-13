@@ -12,6 +12,10 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+// Kolory z design systemu strony
+const INK   = "#2C2420";   // --color-ink
+const GOLD  = "#C9A96E";   // --color-gold  (tylko Crocus Hill)
+
 type LocationItem = {
   name: string;
   time: string;
@@ -22,8 +26,6 @@ type LocationItem = {
 
 type Props = {
   locations: LocationItem[];
-  activeCategory: string;
-  markerColor: string;
   mapboxToken: string;
 };
 
@@ -43,7 +45,7 @@ const locationIconMap: Record<string, LucideIcon> = {
   "Basen Floating Arena":               Waves,
 };
 
-export default function MapboxMap({ locations, markerColor, mapboxToken }: Props) {
+export default function MapboxMap({ locations, mapboxToken }: Props) {
   return (
     <Map
       initialViewState={{
@@ -55,69 +57,75 @@ export default function MapboxMap({ locations, markerColor, mapboxToken }: Props
       mapboxAccessToken={mapboxToken}
       style={{ width: "100%", height: "100%" }}
     >
-      {/* POI Markers */}
+      {/* POI Markers — ink monochrome */}
       {locations.map((loc, idx) => {
         const Icon = locationIconMap[loc.name] ?? Trees;
         return (
           <Marker key={`${loc.name}-${idx}`} longitude={loc.lng} latitude={loc.lat} anchor="bottom">
             <div className="flex flex-col items-center group cursor-pointer">
+
               {/* Tooltip */}
               <div
-                className="opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0
-                  text-white text-[11px] font-medium px-2.5 py-1 rounded-lg whitespace-nowrap mb-2 shadow-lg pointer-events-none"
-                style={{ backgroundColor: markerColor }}
+                className="
+                  opacity-0 group-hover:opacity-100 pointer-events-none
+                  transition-all duration-200 translate-y-1 group-hover:translate-y-0
+                  text-[11px] font-medium px-2.5 py-1 rounded-lg
+                  whitespace-nowrap mb-2 shadow-md relative
+                "
+                style={{ backgroundColor: INK, color: "#F5F0E8" }}
               >
                 {loc.name}
-                {/* Tooltip arrow */}
-                <div
-                  className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0"
+                <span
+                  className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 block"
                   style={{
                     borderLeft: "5px solid transparent",
                     borderRight: "5px solid transparent",
-                    borderTop: `5px solid ${markerColor}`,
+                    borderTop: `5px solid ${INK}`,
                   }}
                 />
               </div>
 
-              {/* Icon marker */}
+              {/* Icon circle */}
               <div
-                className="flex items-center justify-center w-9 h-9 rounded-full shadow-md
-                  ring-2 ring-white transition-transform duration-200 group-hover:scale-110"
-                style={{ backgroundColor: markerColor }}
+                className="
+                  flex items-center justify-center w-9 h-9 rounded-full
+                  ring-2 ring-white shadow-md
+                  transition-transform duration-200 group-hover:scale-110
+                "
+                style={{ backgroundColor: INK }}
               >
-                <Icon size={16} strokeWidth={2} className="text-white" />
+                <Icon size={15} strokeWidth={2} color="#F5F0E8" />
               </div>
 
               {/* Stem */}
-              <div
-                className="w-[2px] h-2 rounded-b-full"
-                style={{ backgroundColor: markerColor }}
-              />
+              <div className="w-[2px] h-2 rounded-b-full" style={{ backgroundColor: INK }} />
             </div>
           </Marker>
         );
       })}
 
-      {/* Crocus Hill — główny pin */}
+      {/* Crocus Hill — gold accent */}
       <Marker longitude={14.5369} latitude={53.4398} anchor="bottom">
-        <div className="flex flex-col items-center z-10 relative group cursor-pointer">
-          {/* Label */}
-          <div className="font-medium text-[11px] px-3 py-1 rounded-lg shadow-lg mb-2 text-white whitespace-nowrap"
-            style={{ backgroundColor: "#8B5E9E" }}>
+        <div className="flex flex-col items-center relative group cursor-pointer">
+
+          {/* Label — always visible */}
+          <div
+            className="text-[11px] font-medium px-3 py-1 rounded-lg shadow-md mb-2 whitespace-nowrap"
+            style={{ backgroundColor: GOLD, color: "#fff" }}
+          >
             Crocus Hill
           </div>
 
-          {/* Icon marker — nieco większy, branded */}
+          {/* Icon circle — gold, slightly larger */}
           <div
-            className="flex items-center justify-center w-11 h-11 rounded-full shadow-lg
-              ring-2 ring-white ring-offset-1"
-            style={{ backgroundColor: "#8B5E9E" }}
+            className="flex items-center justify-center w-11 h-11 rounded-full ring-2 ring-white shadow-lg"
+            style={{ backgroundColor: GOLD }}
           >
-            <Home size={18} strokeWidth={2} className="text-white" />
+            <Home size={18} strokeWidth={2} color="#fff" />
           </div>
 
           {/* Stem */}
-          <div className="w-[2px] h-2.5 rounded-b-full" style={{ backgroundColor: "#8B5E9E" }} />
+          <div className="w-[2px] h-2.5 rounded-b-full" style={{ backgroundColor: GOLD }} />
         </div>
       </Marker>
     </Map>
