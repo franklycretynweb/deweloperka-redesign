@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type TargetAndTransition } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -102,8 +102,8 @@ export default function Manifest() {
             className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end"
           >
             <motion.div 
-              initial={{ maskSize: "100% 100%", WebkitMaskSize: "100% 100%" }}
-              whileInView={{ maskSize: "2000% 2000%", WebkitMaskSize: "2000% 2000%" }}
+              initial={{ maskSize: "100% 100%" } as TargetAndTransition}
+              whileInView={{ maskSize: "2000% 2000%" } as TargetAndTransition}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 2.5, ease: [0.6, 0.05, 0.2, 1], delay: 0.8 }}
               className="relative w-full max-w-[700px] aspect-[3/4] mask-keyhole bg-ink/5 overflow-hidden transform-gpu"
