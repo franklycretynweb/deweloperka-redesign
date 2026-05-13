@@ -242,7 +242,7 @@ export default function Mieszkania() {
   return (
     <section
       id="mieszkania"
-      className="relative bg-cream-dark pt-24 md:pt-32 pb-24 md:pb-40 overflow-hidden"
+      className="relative bg-cream pt-24 md:pt-32 pb-24 md:pb-40 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
