@@ -3,6 +3,7 @@ import StatsBar from "@/components/StatsBar";
 import Manifest from "@/components/Manifest";
 import Mieszkania from "@/components/Mieszkania";
 import Kontakt from "@/components/Kontakt";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Manifest />
       <Mieszkania />
       <Kontakt />
+      <Footer />
     </main>
   );
 }
