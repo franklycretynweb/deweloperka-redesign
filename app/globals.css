@@ -1,72 +1,5 @@
 @import "tailwindcss";
 
-/* ─── Clash Display ─────────────────────────────────────── */
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/ClashDisplay-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/ClashDisplay-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/ClashDisplay-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/ClashDisplay-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ─── Satoshi ───────────────────────────────────────────── */
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ─── Theme tokens ──────────────────────────────────────── */
 @theme inline {
   --color-cream:       #F5F0E8;
@@ -78,8 +11,8 @@
   --color-plum-pale:   #EDE4F4;
   --color-gold:        #C9A96E;
 
-  --font-display: "Clash Display", sans-serif;
-  --font-body:    "Satoshi", sans-serif;
+  --font-display: var(--font-clash), sans-serif;
+  --font-body:    var(--font-satoshi), sans-serif;
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
@@ -96,4 +29,15 @@ body {
   background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-body);
+}
+
+@utility mask-keyhole {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' preserveAspectRatio='none'%3E%3Cpath d='M 50 0 C 80 0 85 20 85 35 C 85 45 75 52 70 58 L 85 150 L 15 150 L 30 58 C 25 52 15 45 15 35 C 15 20 20 0 50 0 Z' fill='black'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150' preserveAspectRatio='none'%3E%3Cpath d='M 50 0 C 80 0 85 20 85 35 C 85 45 75 52 70 58 L 85 150 L 15 150 L 30 58 C 25 52 15 45 15 35 C 15 20 20 0 50 0 Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
 }

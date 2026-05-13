@@ -45,7 +45,7 @@ export default function Inwestycja() {
           className="flex items-center gap-4 mb-16 md:mb-24"
         >
           <div className="w-12 h-[1px] bg-ink-muted/50" />
-          <span className="font-display font-medium text-[11px] md:text-[13px] tracking-[0.2em] uppercase text-ink-muted">
+          <span className="font-display font-semibold text-[11px] md:text-[13px] tracking-[0.2em] uppercase text-ink-muted">
             O inwestycji
           </span>
         </motion.div>
@@ -123,7 +123,7 @@ export default function Inwestycja() {
             
             {/* Stat 1 */}
             <motion.div variants={fadeUp} className="py-12 md:py-16 md:pr-4 lg:pr-8 xl:pr-10 relative flex flex-col justify-center overflow-hidden">
-              <div className="font-display font-medium text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
+              <div className="font-display font-semibold text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
                 100 m
               </div>
               <div className="font-body font-medium text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-ink-muted uppercase tracking-[0.2em]">
@@ -135,7 +135,7 @@ export default function Inwestycja() {
 
             {/* Stat 2 */}
             <motion.div variants={fadeUp} className="py-12 md:py-16 md:px-4 lg:px-8 xl:px-10 relative flex flex-col justify-center overflow-hidden">
-              <div className="font-display font-medium text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
+              <div className="font-display font-semibold text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
                 do 120 m²
               </div>
               <div className="font-body font-medium text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-ink-muted uppercase tracking-[0.2em]">
@@ -147,7 +147,7 @@ export default function Inwestycja() {
 
             {/* Stat 3 */}
             <motion.div variants={fadeUp} className="py-12 md:py-16 md:pl-4 lg:pl-8 xl:pl-10 flex flex-col justify-center overflow-hidden">
-              <div className="font-display font-medium text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
+              <div className="font-display font-semibold text-[18vw] md:text-[4.5vw] lg:text-[5vw] xl:text-[5.5vw] 2xl:text-[6.5rem] tracking-tight text-ink mb-3 md:mb-5 whitespace-nowrap">
                 VIII 2022
               </div>
               <div className="font-body font-medium text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-ink-muted uppercase tracking-[0.2em]">

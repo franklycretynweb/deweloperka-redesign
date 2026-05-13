@@ -9,25 +9,26 @@ const navLinks = ["O inwestycji", "Mieszkania", "Lokalizacja", "Kontakt"];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-cream flex flex-col overflow-hidden">
-      
+    <section className="relative w-full min-h-screen bg-cream flex flex-col overflow-hidden">
       {/* ── Nav ── */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease, delay: 0.1 }}
-        className="absolute top-0 left-0 right-0 flex items-center justify-between py-6 px-8 md:px-12 z-50"
+        className="w-full flex items-center justify-between py-6 px-8 md:px-12 absolute top-0 left-0 right-0 z-50"
       >
-        <span className="font-display font-semibold text-[13px] tracking-[0.24em] text-ink uppercase">
-          Crocus Hill
-        </span>
+        {/* Logo */}
+        <div className="font-display font-bold text-[15px] tracking-wide text-ink uppercase leading-tight">
+          Crocus<br />Hill
+        </div>
 
-        <ul className="hidden md:flex items-center gap-12 list-none m-0 p-0">
+        {/* Links */}
+        <ul className="hidden lg:flex items-center gap-10 xl:gap-14 list-none m-0 p-0 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <li key={link}>
               <a
-                href="#"
-                className="font-body font-medium text-[13px] tracking-wide text-ink/60 hover:text-ink transition-colors duration-300"
+                href={`#${link.toLowerCase().replace(" ", "-")}`}
+                className="font-body font-medium text-[15px] text-ink/70 hover:text-ink transition-colors duration-300"
               >
                 {link}
               </a>
@@ -35,128 +36,117 @@ export default function Hero() {
           ))}
         </ul>
 
+        {/* Right Button */}
         <a
           href="#kontakt"
-          className="font-body font-medium text-[13px] tracking-wider text-ink border-b border-ink/30 pb-0.5 hover:border-ink transition-colors duration-300"
+          className="hidden md:flex items-center gap-2.5 font-body font-medium text-[14px] text-ink border border-ink/20 px-5 py-2.5 hover:border-ink transition-colors duration-300"
         >
-          Zapytaj o mieszkanie
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Zadzwoń do nas
         </a>
       </motion.nav>
 
-      {/* ── Główny kontener ── */}
-      <div className="relative flex-1 flex flex-col justify-center mt-32 md:mt-40 px-4 md:px-8 pb-8">
-        
-        {/* ── Wrapper na obrazek + wjeżdżający tekst ── */}
-        <div className="relative w-full rounded-[2rem] md:rounded-[2.5rem]">
+      {/* ── Main Content (Editorial Split) ── */}
+      <div className="flex-1 flex items-center pt-32 pb-12 w-full max-w-[1800px] mx-auto px-8 md:px-12 relative z-10 mt-12 md:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
           
-          {/* Wielki Tekst (Wyśrodkowany poziomo) */}
-          <div className="absolute left-0 w-full z-20 pointer-events-none -top-10 md:-top-16 lg:-top-24 xl:-top-32 flex justify-center">
-            <h1 className="font-display font-semibold text-[7vw] leading-[1] tracking-[-0.04em] text-ink m-0 pointer-events-auto whitespace-nowrap text-center">
-              <span className="block overflow-hidden pb-4">
-                <motion.span
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, ease, delay: 0.4 }}
-                  className="block"
-                >
-                  Dom przy Jasnych Błoniach.
-                </motion.span>
-              </span>
-            </h1>
-          </div>
-
-          {/* Obrazek (Pill) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+          {/* ── Left: Typography & Conversion ── */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease, delay: 0.2 }}
-            className="relative w-full h-[55vh] md:h-[65vh] lg:h-[70vh] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-ink/5 z-10"
+            className="lg:col-span-5 flex flex-col items-start relative z-20"
           >
-            <Image
-              src="/heroimg.webp"
-              alt="Crocus Hill — osiedle przy Jasnych Błoniach, Szczecin"
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 95vw"
-            />
-            <div className="absolute inset-0 border border-black/5 rounded-[2rem] md:rounded-[2.5rem] pointer-events-none z-10" />
+            {/* Ghost Logo (Watermark) */}
+            <div className="absolute top-1/2 -translate-y-1/2 -left-12 lg:-left-24 w-[150%] max-w-[700px] opacity-[0.04] pointer-events-none select-none -z-10 mix-blend-multiply">
+              <Image
+                src="/logo/logo_crocushill.webp"
+                alt=""
+                width={800}
+                height={800}
+                className="w-full h-auto object-contain grayscale"
+              />
+            </div>
 
-            {/* ── Customowy Widget Lokalizacji (Pinezka) ── */}
-            <motion.div
-              initial={{ opacity: 0, x: -20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1, ease, delay: 0.9 }}
-              className="absolute bottom-5 left-5 md:bottom-8 md:left-8 z-20"
-            >
-              <a
-                href="#lokalizacja"
-                className="group flex items-center gap-4 p-2 pr-6 rounded-full bg-cream/95 backdrop-blur-md shadow-xl border border-white/50 cursor-pointer transition-transform duration-500 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {/* Okrąg z animowaną ikonką pinu */}
-                <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center shrink-0 group-hover:bg-plum transition-colors duration-500 relative">
-                  {/* Subtelny puls dla efektu live-location */}
-                  <div className="absolute inset-0 rounded-full bg-plum opacity-0 group-hover:opacity-40 group-hover:animate-ping transition-opacity duration-300" />
-                  
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="16" height="16" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="text-cream relative z-10"
-                  >
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                    <circle cx="12" cy="10" r="3"/>
-                  </svg>
-                </div>
-                
-                {/* Tekst widgetu */}
-                <div className="flex flex-col">
-                  <span className="font-display font-medium text-[11px] tracking-[0.15em] uppercase text-ink">
-                    Jasne Błonia
-                  </span>
-                  <span className="font-body font-light text-[10.5px] text-ink-muted/80 tracking-wide mt-0.5">
-                    100 m od parku
-                  </span>
-                </div>
-              </a>
-            </motion.div>
-
-          </motion.div>
-        </div>
-
-        {/* Dolna Sekcja (tylko przyciski po prawej) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease, delay: 0.7 }}
-          className="relative z-20 mt-8 md:mt-12 px-4 md:px-8 flex justify-center md:justify-end"
-        >
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 md:gap-6">
-            <a
-              href="#etap-1"
-              className="group relative overflow-hidden font-body font-medium text-[13px] tracking-wide text-cream bg-ink px-8 py-4 rounded-full transition-all duration-300 hover:bg-ink-muted hover:shadow-lg hover:-translate-y-0.5"
-            >
-              Etap I — dostępne
-            </a>
-
-            <a
-              href="#etap-2"
-              className="group flex items-center gap-2 font-body font-medium text-[13px] tracking-wide text-ink px-4 py-4 transition-all duration-300 hover:text-ink/60"
-            >
-              Etap II — przedsprzedaż
-              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                →
+            {/* Eyebrow */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-[1px] bg-gold" />
+              <span className="font-body font-semibold text-[11px] md:text-[12px] tracking-[0.2em] uppercase text-gold">
+                Etap II — W sprzedaży
               </span>
-            </a>
-          </div>
-        </motion.div>
+            </div>
 
+            {/* Headline */}
+            <h1 className="font-display font-medium text-ink leading-[1.05] tracking-tight text-[clamp(42px,5vw,84px)] mb-6 md:mb-8">
+              Znajdź swój dom<br />
+              <span className="italic font-light font-serif text-ink/80">przy Jasnych Błoniach</span>
+            </h1>
+
+            {/* Sub-headline */}
+            <p className="font-body font-light text-[16px] md:text-[18px] leading-[1.6] text-ink/70 max-w-[480px] mb-10 md:mb-12">
+              Zaprojektowane z myślą o tych, którzy nie uznają kompromisów. Odkryj przestrzeń, w której natura spotyka się z wielkomiejskim stylem życia.
+            </p>
+
+            {/* Conversion Area (CTA + Trust Indicator) */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full sm:w-auto">
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                href="#kontakt"
+                className="w-full sm:w-auto bg-ink text-cream font-body font-medium text-[15px] tracking-wide px-10 py-4 lg:py-5 border border-ink hover:bg-cream hover:text-ink transition-all duration-500 text-center"
+              >
+                Zapytaj o mieszkanie
+              </motion.a>
+              
+              {/* Urgency / Status Indicator */}
+              <div className="flex items-center gap-3 mt-2 sm:mt-0">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold"></span>
+                </span>
+                <span className="font-body font-medium text-[13px] text-ink-muted">
+                  Ostatnie 3 apartamenty
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Right: The Architecture ── */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1.5, ease, delay: 0.4 }}
+            className="lg:col-span-7 relative h-[50vh] lg:h-full lg:min-h-[80vh] w-full flex items-center justify-end mt-12 lg:mt-0"
+          >
+            {/* Grounding Backdrop Container */}
+            <div className="absolute right-[-100px] lg:right-[-200px] top-1/2 -translate-y-1/2 w-[120%] lg:w-[130%] h-[70%] lg:h-[90%] bg-ink/[0.03] rounded-l-[60px] -z-10" />
+
+            {/* The Building Image */}
+            <div className="relative w-full max-w-[1200px] lg:scale-[1.15] lg:translate-x-12 origin-right drop-shadow-2xl">
+              <Image
+                src="/heroimg6.png"
+                alt="Crocus Hill — osiedle przy Jasnych Błoniach, Szczecin"
+                width={2000}
+                height={1500}
+                priority
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
 }
+
