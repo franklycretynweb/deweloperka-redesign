@@ -66,17 +66,6 @@ export default function Hero() {
             transition={{ duration: 1.2, ease, delay: 0.2 }}
             className="lg:col-span-5 flex flex-col items-start relative z-20"
           >
-            {/* Ghost Logo (Watermark) */}
-            <div className="absolute top-1/2 -translate-y-1/2 -left-12 lg:-left-24 w-[150%] max-w-[700px] opacity-[0.04] pointer-events-none select-none -z-10 mix-blend-multiply">
-              <Image
-                src="/logo/logo_crocushill.webp"
-                alt=""
-                width={800}
-                height={800}
-                className="w-full h-auto object-contain grayscale"
-              />
-            </div>
-
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-8">
               <div className="w-10 h-[1px] bg-gold" />
@@ -86,9 +75,9 @@ export default function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-display font-medium text-ink leading-[1.05] tracking-tight text-[clamp(42px,5vw,84px)] mb-6 md:mb-8">
+            <h1 className="font-display font-medium text-ink leading-[1.05] tracking-tight text-[clamp(42px,4vw,84px)] mb-6 md:mb-8 whitespace-nowrap">
               Znajdź swój dom<br />
-              <span className="italic font-light font-serif text-ink/80">przy Jasnych Błoniach</span>
+              <span className="italic font-light font-serif text-ink/80 whitespace-normal">przy Jasnych Błoniach</span>
             </h1>
 
             {/* Sub-headline */}
@@ -127,11 +116,19 @@ export default function Hero() {
             transition={{ duration: 1.5, ease, delay: 0.4 }}
             className="lg:col-span-7 relative h-[50vh] lg:h-full lg:min-h-[80vh] w-full flex items-center justify-end mt-12 lg:mt-0"
           >
-            {/* Grounding Backdrop Container */}
-            <div className="absolute right-[-100px] lg:right-[-200px] top-1/2 -translate-y-1/2 w-[120%] lg:w-[130%] h-[70%] lg:h-[90%] bg-ink/[0.03] rounded-l-[60px] -z-10" />
+            {/* Ghost Logo (Watermark) placed behind the building */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] opacity-15 pointer-events-none select-none -z-10">
+              <Image
+                src="/logo/logo_crocushill.webp"
+                alt=""
+                width={1200}
+                height={1200}
+                className="w-full h-auto object-contain invert opacity-60"
+              />
+            </div>
 
             {/* The Building Image */}
-            <div className="relative w-full max-w-[1200px] lg:scale-[1.15] lg:translate-x-12 origin-right drop-shadow-2xl">
+            <div className="relative w-full max-w-[1200px] lg:scale-[1.15] lg:translate-x-12 -translate-y-4 lg:-translate-y-6 origin-right drop-shadow-2xl">
               <Image
                 src="/heroimg6.png"
                 alt="Crocus Hill — osiedle przy Jasnych Błoniach, Szczecin"
