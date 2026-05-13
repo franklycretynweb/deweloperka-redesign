@@ -114,9 +114,6 @@ export default function Manifest() {
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
             className="lg:col-span-7 xl:col-span-7 flex flex-col xl:pr-12"
           >
-            <span className="font-body font-semibold text-[11px] md:text-[13px] tracking-[0.2em] uppercase text-gold mb-8 md:mb-12">
-              Manifest Przestrzeni
-            </span>
             <h2 className="font-display font-medium text-[clamp(36px,4vw,64px)] leading-[1.05] tracking-tight text-ink mb-12 md:mb-16">
               Zaprojektowaliśmy domy, nie{" "}
               <span className="italic font-light font-serif text-ink/70">jednostki inwestycyjne.</span>
