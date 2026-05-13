@@ -44,7 +44,7 @@ export default function StatsBar() {
             )}
 
             {/* Liczba */}
-            <span className="font-display font-semibold text-[clamp(28px,3.5vw,52px)] tracking-tight text-ink leading-none mb-3">
+            <span className="font-display font-semibold text-[clamp(28px,3.5vw,52px)] tracking-tight text-ink leading-none mb-3 whitespace-nowrap">
               {stat.value}
             </span>
 
