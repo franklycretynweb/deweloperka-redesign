@@ -2,20 +2,37 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 const navLinks = ["O inwestycji", "Mieszkania", "Lokalizacja", "Kontakt"];
 
 export default function Hero() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="relative w-full min-h-screen bg-cream flex flex-col overflow-hidden">
-      {/* ── Nav ── */}
+      {/* ── Nav — fixed, scroll-aware ── */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease, delay: 0.1 }}
-        className="w-full flex items-center justify-between py-6 px-8 md:px-12 absolute top-0 left-0 right-0 z-50"
+        className={`
+          fixed top-0 left-0 right-0 z-50
+          w-full flex items-center justify-between py-5 px-8 md:px-12
+          transition-all duration-300
+          ${scrolled
+            ? "bg-cream/95 backdrop-blur-md shadow-[0_1px_0_rgba(44,36,32,0.08)]"
+            : "bg-transparent"
+          }
+        `}
       >
         {/* Logo */}
         <div className="font-display font-bold text-[15px] tracking-wide text-ink uppercase leading-tight">
