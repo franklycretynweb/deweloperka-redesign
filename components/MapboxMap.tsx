@@ -2,7 +2,15 @@
 
 import Map, { Marker } from "react-map-gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MapPin } from "lucide-react";
+import {
+  Trees, TreePine, Waves,
+  Baby, Award, BookOpen, GraduationCap,
+  TramFront, TrainFront,
+  ShoppingBag, ShoppingBasket,
+  Dumbbell,
+  Home,
+  type LucideIcon,
+} from "lucide-react";
 
 type LocationItem = {
   name: string;
@@ -14,10 +22,28 @@ type LocationItem = {
 
 type Props = {
   locations: LocationItem[];
+  activeCategory: string;
+  markerColor: string;
   mapboxToken: string;
 };
 
-export default function MapboxMap({ locations, mapboxToken }: Props) {
+const locationIconMap: Record<string, LucideIcon> = {
+  "Jasne Błonia":                       Trees,
+  "Park Kasprowicza":                   TreePine,
+  "Bulwary Odrzańskie":                 Waves,
+  "Przedszkole Publiczne nr 2":         Baby,
+  "Szkoła Podstawowa nr 54":            BookOpen,
+  "Szkoła Podstawowa nr 10":            Award,
+  "Uniwersytet Szczeciński":            GraduationCap,
+  "Przystanek Tramwajowy (Linie 1, 9)": TramFront,
+  "Dworzec Główny PKP":                 TrainFront,
+  "Centrum Handlowe Galaxy":            ShoppingBag,
+  "Lokalny ryneczek":                   ShoppingBasket,
+  "Korty tenisowe":                     Dumbbell,
+  "Basen Floating Arena":               Waves,
+};
+
+export default function MapboxMap({ locations, markerColor, mapboxToken }: Props) {
   return (
     <Map
       initialViewState={{
@@ -29,24 +55,69 @@ export default function MapboxMap({ locations, mapboxToken }: Props) {
       mapboxAccessToken={mapboxToken}
       style={{ width: "100%", height: "100%" }}
     >
-      {locations.map((loc, idx) => (
-        <Marker key={idx} longitude={loc.lng} latitude={loc.lat} anchor="bottom">
-          <div className="flex flex-col items-center group cursor-pointer">
-            <div className="bg-ink text-cream font-body text-[11px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap mb-1 -translate-y-2">
-              {loc.name}
-            </div>
-            <MapPin className="text-gold drop-shadow-md" size={24} strokeWidth={2} fill="white" />
-          </div>
-        </Marker>
-      ))}
+      {/* POI Markers */}
+      {locations.map((loc, idx) => {
+        const Icon = locationIconMap[loc.name] ?? Trees;
+        return (
+          <Marker key={`${loc.name}-${idx}`} longitude={loc.lng} latitude={loc.lat} anchor="bottom">
+            <div className="flex flex-col items-center group cursor-pointer">
+              {/* Tooltip */}
+              <div
+                className="opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0
+                  text-white text-[11px] font-medium px-2.5 py-1 rounded-lg whitespace-nowrap mb-2 shadow-lg pointer-events-none"
+                style={{ backgroundColor: markerColor }}
+              >
+                {loc.name}
+                {/* Tooltip arrow */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0"
+                  style={{
+                    borderLeft: "5px solid transparent",
+                    borderRight: "5px solid transparent",
+                    borderTop: `5px solid ${markerColor}`,
+                  }}
+                />
+              </div>
 
-      {/* Główny pin inwestycji */}
+              {/* Icon marker */}
+              <div
+                className="flex items-center justify-center w-9 h-9 rounded-full shadow-md
+                  ring-2 ring-white transition-transform duration-200 group-hover:scale-110"
+                style={{ backgroundColor: markerColor }}
+              >
+                <Icon size={16} strokeWidth={2} className="text-white" />
+              </div>
+
+              {/* Stem */}
+              <div
+                className="w-[2px] h-2 rounded-b-full"
+                style={{ backgroundColor: markerColor }}
+              />
+            </div>
+          </Marker>
+        );
+      })}
+
+      {/* Crocus Hill — główny pin */}
       <Marker longitude={14.5369} latitude={53.4398} anchor="bottom">
-        <div className="flex flex-col items-center z-10 relative">
-          <div className="bg-gold text-white font-body font-medium text-[12px] px-3 py-1.5 rounded-full shadow-lg mb-1">
+        <div className="flex flex-col items-center z-10 relative group cursor-pointer">
+          {/* Label */}
+          <div className="font-medium text-[11px] px-3 py-1 rounded-lg shadow-lg mb-2 text-white whitespace-nowrap"
+            style={{ backgroundColor: "#8B5E9E" }}>
             Crocus Hill
           </div>
-          <div className="w-3 h-3 bg-gold rotate-45 transform -translate-y-2" />
+
+          {/* Icon marker — nieco większy, branded */}
+          <div
+            className="flex items-center justify-center w-11 h-11 rounded-full shadow-lg
+              ring-2 ring-white ring-offset-1"
+            style={{ backgroundColor: "#8B5E9E" }}
+          >
+            <Home size={18} strokeWidth={2} className="text-white" />
+          </div>
+
+          {/* Stem */}
+          <div className="w-[2px] h-2.5 rounded-b-full" style={{ backgroundColor: "#8B5E9E" }} />
         </div>
       </Marker>
     </Map>
